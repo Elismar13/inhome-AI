@@ -24,7 +24,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello():
-    return 'Hello, world!'
+    return 'Oooppss!'
 
 @app.route('/save', methods=['POST'])
 def save():
