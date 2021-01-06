@@ -12,7 +12,9 @@ from neural_net.NeuralNet import Model
 # file_controller = FileController('/home/thushima/Documents/git/Monitoramento-de-ambientes-IoT/Raspberry/python/data/collected_data.txt')
 
 FILE_PATH = str(__file__)
-MODEL_PATH = FILE_PATH.replace('server.py', 'model')
+MODEL_PATH = FILE_PATH.replace('app.py', 'model')
+
+print(MODEL_PATH)
 
 model = Model(7)
 model.load_state_dict(torch.load(MODEL_PATH))
