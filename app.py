@@ -9,24 +9,25 @@ from controllers.file import FileController
 from controllers.neural import NeuralNetController 
 from neural_net.NeuralNet import Model
 
-# file_controller = FileController('/home/thushima/Documents/git/Monitoramento-de-ambientes-IoT/Raspberry/python/data/collected_data.txt')
 
 FILE_PATH = str(__file__)
-MODEL_PATH = FILE_PATH.replace('app.py', 'model')
-
-print(MODEL_PATH)
+MODEL_PATH = FILE_PATH.replace('server.py', 'model')
+MONGO_DB_URL = 'mongodb+srv://knigth11:knigth11@cluster0.l6ync.mongodb.net/iot?retryWrites=true&w=majority'
+MONGO_DB_URL_LOCAL = 'mongodb://localhost:27017/test?retryWrites=true&w=majority'
 
 model = Model(7)
 model.load_state_dict(torch.load(MODEL_PATH))
 model.eval()
 
-database = DatabaseClient('mongodb+srv://knigth11:knigth11@cluster0.l6ync.mongodb.net/iot?retryWrites=true&w=majority')
+file_controller = FileController(FILE_PATH.replace('server.py', 'dadoscoletados.txt'))
+
+database = DatabaseClient(MONGO_DB_URL)
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello():
-    return 'Oooppss!'
+    return 'Hello, world!'
 
 @app.route('/save', methods=['POST'])
 def save():
@@ -42,7 +43,6 @@ def predict():
         classes = ['DESLIGA', 'AUMENTA', 'DIMINUI', 'LIGADO' ]
 
         data_json = request.get_json(force=True)
-        # result = neural_controller.predict(data_json)
 
         data = []
 
