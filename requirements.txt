@@ -4,6 +4,11 @@ Flask==1.1.2
 pymongo==3.11.2
 gunicorn==20.0.4
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+numpy==1.19.5
+dnspython
+>>>>>>> ee73865c03219e81227444c8931f084a32e932de
 =======
 numpy==1.19.5
 dnspython
